@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -29,6 +31,8 @@ namespace DOAN_WEBNC.Models
         {
             return new ApplicationDbContext();
         }
+
+        
         public DbSet<NamHoc> NamHocs { get; set; }
         public DbSet<MonHoc> MonHocs { get; set; }
         public DbSet<Lop> Lops { get; set; }
@@ -37,5 +41,7 @@ namespace DOAN_WEBNC.Models
         public DbSet<HocKy> HocKys { get; set; }
         public DbSet<DiemHS> DiemHocSinhs { get; set; }
         public DbSet<ChiTietDiem> ChiTietDiems { get; set; }
+
     }
+
 }

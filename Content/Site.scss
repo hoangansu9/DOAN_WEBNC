@@ -9,7 +9,19 @@
     font-size: 16px;
     position: relative;
 }
-
+/*a:hover{
+    color: #fff;
+}*/
+a:focus,
+a:active, 
+a:visited{
+    color:#007bff ;
+}
+.my-container{
+    width: 100% !important;
+    padding-left: 100px;
+    padding-right: 100px;
+}
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -20,7 +32,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-text-fill-color: #fff;
+    -webkit-text-fill-color: #333;
     -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     transition: background-color 5000s ease-in-out 0s;
 }
@@ -41,10 +53,6 @@ label {
     font-weight: 300;
 }
 
-a:hover, a:active, a:focus, a:visited {
-    text-decoration: none;
-    color: #fff;
-}
 
 header {
     .nav {
@@ -156,6 +164,20 @@ main {
 }
 
 footer {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        -webkit-text-fill-color: #fff;
+        -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
     padding-top: 40px;
     padding-bottom: 20px;
     min-height: 520px;
@@ -276,7 +298,7 @@ table {
     tbody {
         tr {
             border-bottom: 1px solid #dddddd;
-            text-align: center;
+            text-align: left;
 
             &:nth-of-type(even) {
                 background-color: #ebebeb5e;
@@ -325,11 +347,24 @@ table {
     width: 100%;
     padding-top: 5%;
 
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        -webkit-text-fill-color: #fff;
+        -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
     .school-content {
         font-family: 'Quicksand', sans-serif !important;
         display: inline-block;
         padding: 50px;
- 
         color: #fff;
         text-transform: uppercase;
         line-height: 40px;
@@ -351,6 +386,7 @@ table {
 
         @media screen and (max-width: 425px) {
             margin-top: 0;
+
             h3 {
                 font-size: 20px;
                 font-weight: 700;
@@ -399,11 +435,12 @@ table {
             height: 40px;
             color: #fff;
             background-color: transparent;
-            &:focus{
-                color:#fff;
+
+            &:focus {
+                color: #fff;
             }
         }
-        
+
 
         .form-control:focus {
             border-color: #e8eef3;
@@ -484,13 +521,13 @@ table {
         }
     }
 
-    @media screen and (max-width: 922px){
+    @media screen and (max-width: 922px) {
         height: 100%;
         width: 100%;
         padding-bottom: 50px;
-    }    
-    @media screen and (max-width: 425px)
-    {
+    }
+
+    @media screen and (max-width: 425px) {
         height: 100%;
     }
 }

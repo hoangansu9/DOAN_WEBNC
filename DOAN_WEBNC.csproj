@@ -171,15 +171,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LopController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007020324297__CreateDatabase.cs" />
-    <Compile Include="Migrations\202007020324297__CreateDatabase.Designer.cs">
-      <DependentUpon>202007020324297__CreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202007061355520__CreateDbContext.cs" />
+    <Compile Include="Migrations\202007061355520__CreateDbContext.Designer.cs">
+      <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,6 +259,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -378,6 +381,12 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\StudentView\Index.cshtml" />
+    <Content Include="Views\Lop\Create.cshtml" />
+    <Content Include="Views\Lop\Delete.cshtml" />
+    <Content Include="Views\Lop\Details.cshtml" />
+    <Content Include="Views\Lop\Edit.cshtml" />
+    <Content Include="Views\Lop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -388,15 +397,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007020324297__CreateDatabase.resx">
-      <DependentUpon>202007020324297__CreateDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007061355520__CreateDbContext.resx">
+      <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

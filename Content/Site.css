@@ -8,6 +8,19 @@
   font-size: 16px;
   position: relative; }
 
+/*a:hover{
+    color: #fff;
+}*/
+a:focus,
+a:active,
+a:visited {
+  color: #007bff; }
+
+.my-container {
+  width: 100% !important;
+  padding-left: 100px;
+  padding-right: 100px; }
+
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -18,7 +31,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: #333;
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s; }
 
@@ -33,10 +46,6 @@ input:focus {
 
 label {
   font-weight: 300; }
-
-a:hover, a:active, a:focus, a:visited {
-  text-decoration: none;
-  color: #fff; }
 
 header .nav {
   background-image: linear-gradient(88.7deg, rgba(144, 254, 229, 0.5) -17.1%, rgba(91, 193, 239, 0.5) 30.4%, rgba(119, 94, 173, 0.5) 130.3%), url("images/bg.jpg");
@@ -116,6 +125,18 @@ footer {
   width: 100%;
   background-image: linear-gradient(88.7deg, #0f78a1 -17.1%, #2892c4 40.4%, #5023b1 115.3%);
   color: #fff; }
+  footer input:-webkit-autofill,
+  footer input:-webkit-autofill:hover,
+  footer input:-webkit-autofill:focus,
+  footer textarea:-webkit-autofill,
+  footer textarea:-webkit-autofill:hover,
+  footer textarea:-webkit-autofill:focus,
+  footer select:-webkit-autofill,
+  footer select:-webkit-autofill:hover,
+  footer select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s; }
   footer h3 {
     font-weight: 600;
     font-size: 26px; }
@@ -186,7 +207,7 @@ table {
     padding: 12px 15px; }
   table tbody tr {
     border-bottom: 1px solid #dddddd;
-    text-align: center; }
+    text-align: left; }
     table tbody tr:nth-of-type(even) {
       background-color: #ebebeb5e; }
   table .subject-name {
@@ -221,6 +242,18 @@ table {
   background-size: cover;
   width: 100%;
   padding-top: 5%; }
+  .login-container input:-webkit-autofill,
+  .login-container input:-webkit-autofill:hover,
+  .login-container input:-webkit-autofill:focus,
+  .login-container textarea:-webkit-autofill,
+  .login-container textarea:-webkit-autofill:hover,
+  .login-container textarea:-webkit-autofill:focus,
+  .login-container select:-webkit-autofill,
+  .login-container select:-webkit-autofill:hover,
+  .login-container select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s; }
   .login-container .school-content {
     font-family: 'Quicksand', sans-serif !important;
     display: inline-block;

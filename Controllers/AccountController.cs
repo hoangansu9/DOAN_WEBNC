@@ -69,6 +69,7 @@ namespace DOAN_WEBNC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -80,6 +81,12 @@ namespace DOAN_WEBNC.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //var user = _userManager.FindByEmail(model.Email);
+                    //var role = _userManager.GetRoles(user.Id).ToString();
+                    //if(role == "Admin")
+                    //{
+                    //    return RedirectToAction("Index", "Student");
+                    //}
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

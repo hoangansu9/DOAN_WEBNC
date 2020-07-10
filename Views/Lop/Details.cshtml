@@ -1,0 +1,27 @@
+﻿@model DOAN_WEBNC.Models.Lop
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLop)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDLop }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

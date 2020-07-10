@@ -3,7 +3,7 @@ namespace DOAN_WEBNC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _CreateDatabase : DbMigration
+    public partial class _CreateDbContext : DbMigration
     {
         public override void Up()
         {
@@ -69,12 +69,13 @@ namespace DOAN_WEBNC.Migrations
                         GioiTinh = c.String(nullable: false),
                         NgaySinh = c.DateTime(nullable: false),
                         DiaChi = c.String(),
-                        Email = c.String(),
+                        Email = c.String(maxLength: 8000, unicode: false),
                         IDLop = c.String(maxLength: 128),
                         Image = c.String(),
                     })
                 .PrimaryKey(t => t.IDHocSinh)
                 .ForeignKey("dbo.Lops", t => t.IDLop)
+                .Index(t => t.Email, unique: true)
                 .Index(t => t.IDLop);
             
             CreateTable(
@@ -194,6 +195,7 @@ namespace DOAN_WEBNC.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.HocSinhs", new[] { "IDLop" });
+            DropIndex("dbo.HocSinhs", new[] { "Email" });
             DropIndex("dbo.HocKies", new[] { "IDNamHoc" });
             DropIndex("dbo.DiemHS", new[] { "IDHocKy" });
             DropIndex("dbo.DiemHS", new[] { "MaMonHoc" });

@@ -7,13 +7,13 @@ namespace DOAN_WEBNC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class _CreateDatabase : IMigrationMetadata
+    public sealed partial class _CreateDbContext : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_CreateDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_CreateDbContext));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007020324297__CreateDatabase"; }
+            get { return "202007061355520__CreateDbContext"; }
         }
         
         string IMigrationMetadata.Source

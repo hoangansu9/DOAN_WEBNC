@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace DOAN_WEBNC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudentController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -107,13 +110,8 @@ namespace DOAN_WEBNC.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 temp++;
-                var user = new ApplicationUser { UserName = "HS"+temp+"@gmail.com", Email = hocSinh.Email };
-                var result = await UserManager.CreateAsync(user,"123456@aA");
-
-                if (result.Succeeded)
-                {
-                    UserManager.AddToRole(user.Id, "Student");
-                }            
+                var user = new ApplicationUser { UserName = hocSinh.Email, Email = hocSinh.Email };
+                        
 
                 string userID = user.Id;
 
@@ -126,15 +124,40 @@ namespace DOAN_WEBNC.Controllers
                 hs.Email = hocSinh.Email;
                 hs.IDLop = hocSinh.IDLop;
                 hs.Image = hocSinh.Image;
-              
-                db.HocSinhs.Add(hs);
-                db.SaveChanges();
 
-                
+                ViewBag.IDLop = new SelectList(db.Lops, "IDLop", "TenLop", hocSinh.IDLop);
+
+                db.HocSinhs.Add(hs);
+                try
+                {
+                    db.SaveChanges();
+                    var result = await UserManager.CreateAsync(user, "123456@aA");
+
+                    if (result.Succeeded)
+                    {
+                        UserManager.AddToRole(user.Id, "Student");
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    SqlException innerException = ex.InnerException.InnerException as SqlException;
+                    if (innerException != null && innerException.Number == 2601)
+                    {
+                        ModelState.AddModelError("UniqueEmail", "Email này đã tồn tại trong hệ thống. Vui lòng nhập lại Email khác");
+                        return View("Create", hocSinh);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UniqueEmail", "Có vẫn đề đã xảy ra khi lưu dữ liệu, try again!");
+                        return View("Create", hocSinh);
+                    }
+                }
+
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDLop = new SelectList(db.Lops, "IDLop", "TenLop", hocSinh.IDLop);
+           
          
             return View(hocSinh);
         }

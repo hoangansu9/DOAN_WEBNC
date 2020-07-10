@@ -7,6 +7,7 @@
     <title>@ViewBag.Titlen</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/4b910408b4.js" crossorigin="anonymous"></script>
 </head>
 <body class="student-layout">
     <header>
@@ -23,18 +24,14 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                       @Html.Partial("_LoginPartial")
-                    </li>
+                    @Html.Partial("_LoginPartial")
                 </ul>
             </div>
         </nav>
 
     </header>
     <main>
-        <div class="container-lg">
             @RenderBody()
-        </div>
     </main>
     <footer>
         <div class="footer-top">
