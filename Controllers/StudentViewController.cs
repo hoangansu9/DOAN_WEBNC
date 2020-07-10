@@ -26,6 +26,7 @@ namespace DOAN_WEBNC.Controllers
                 }
             }
             var student = db.HocSinhs.FirstOrDefault(x => x.IDHocSinh == userID);
+            
             if (student != null)
             {
                 return View(student);

@@ -41,6 +41,21 @@ namespace DOAN_WEBNC.Models
         public DbSet<HocKy> HocKys { get; set; }
         public DbSet<DiemHS> DiemHocSinhs { get; set; }
         public DbSet<ChiTietDiem> ChiTietDiems { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUser>()
+                                               .Ignore(c => c.AccessFailedCount)
+                                               .Ignore(c => c.LockoutEnabled)
+                                                .Ignore(c => c.LockoutEndDateUtc)
+                                               //.Ignore(c => c.PhoneNumber)
+                                               .Ignore(c => c.PhoneNumberConfirmed)
+                                               .Ignore(c => c.EmailConfirmed)
+                                               .Ignore(c => c.TwoFactorEnabled)
+                                               ;
+            modelBuilder.Entity<IdentityUser>().ToTable("AspNetUsers");
+
+        }
 
     }
 
