@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiemHSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -387,6 +388,11 @@
     <Content Include="Views\Lop\Details.cshtml" />
     <Content Include="Views\Lop\Edit.cshtml" />
     <Content Include="Views\Lop\Index.cshtml" />
+    <Content Include="Views\DiemHS\Create.cshtml" />
+    <Content Include="Views\DiemHS\Delete.cshtml" />
+    <Content Include="Views\DiemHS\Details.cshtml" />
+    <Content Include="Views\DiemHS\Edit.cshtml" />
+    <Content Include="Views\DiemHS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
