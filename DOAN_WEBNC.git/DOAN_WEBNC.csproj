@@ -221,6 +221,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="MailHelper\MailHelper.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -412,6 +413,12 @@
     <EmbeddedResource Include="Migrations\202007061355520__CreateDbContext.resx">
       <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SendMail\SendMail.csproj">
+      <Project>{DBA68F2F-883B-4020-8F93-A53AE91A7606}</Project>
+      <Name>SendMail</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
