@@ -52,17 +52,21 @@
                         <h3>
                             Gửi ý kiến của bạn cho chúng tôi
                         </h3>
-                        <div class="feedback-form">
+                        @*<form class="feedback-form">*@
+                            @using (Html.BeginForm("SendMail", "Home"))
+                            {
+                              
                             <label class="control-label" for="email">Email</label>
                             <input class="form-control" type="email" name="email" id="emailAddress">
                             <label class="control-label" for="fullname">Họ tên</label>
                             <input class="form-control" type="text" name="fullname" id="fullname">
                             <label for="feedback-content" class="label-control">Nội dung</label>
-                            <textarea class="form-control" name="feedback-content" id="feedbackContent" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="feedbackContent" id="feedbackContent" cols="30" rows="10"></textarea>
                             <div class="col-md-2 col-md-offset-9 col-sm-2 col-sm-offset-10">
                                 <button class="btn btn-primary" type="submit">Gửi</button>
                             </div>
-                        </div>
+                            }
+                        @*</form>*@
                     </div>
                     <div class="col-lg-5 align-items-center">
                         <h3>Trường trung học Papatoetoe</h3>

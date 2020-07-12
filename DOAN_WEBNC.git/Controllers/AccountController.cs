@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DOAN_WEBNC.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
+using SendMail;
 
 namespace DOAN_WEBNC.Controllers
 {
@@ -427,6 +429,7 @@ namespace DOAN_WEBNC.Controllers
 
             base.Dispose(disposing);
         }
+       
 
         #region Helpers
         // Used for XSRF protection when adding external logins
