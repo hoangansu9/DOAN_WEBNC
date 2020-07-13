@@ -16,12 +16,12 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace DOAN_WEBNC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class StudentController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public static string TaoMaTuDong(string s, string sMa) //s="17DH110798", sMa = "0798"
+        public static string TaoMaTuDong(string sMa) //s="17DH110798", sMa = "0798"
         {
             var so = int.Parse(sMa); //"0798" => 798
             so++; //799
@@ -55,7 +55,7 @@ namespace DOAN_WEBNC.Controllers
                     sMa = string.Format("{0:000000000}", so); //799 => "000000799"
                     break;
             }
-            return s.Substring(0, s.Length - sMa.Length) + sMa;  //"17DH11"+"0799"
+            return sMa;  //"17DH11"+"0799"
         }
 
         // GET: Student
@@ -104,13 +104,29 @@ namespace DOAN_WEBNC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "IDHocSinh,HoTen,GioiTinh,NgaySinh,DiaChi,Email,IDLop,Image")] HocSinh hocSinh)
         {
-            int temp = 0;
+            //
+            string MSSV = "";
+            var lastStudent = db.HocSinhs.ToList().Last();
+            var _begin = DateTime.Now.Year.ToString().Substring(0, 2) + "ST";
+            var _end = "";
+            if (lastStudent != null)
+            {
+                _end = TaoMaTuDong("100000");
+            }
+            else
+            {
+                _end = TaoMaTuDong(lastStudent.MSSV.Substring(0,4));
+            }
+
+            MSSV = _begin + _end;
+
             if (ModelState.IsValid)
             {
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                temp++;
-                var user = new ApplicationUser { UserName = hocSinh.Email, Email = hocSinh.Email };
+                
+                var email = MSSV + "@gmail.com";
+                var user = new ApplicationUser { UserName = email, Email = email};
                         
 
                 string userID = user.Id;
@@ -121,15 +137,15 @@ namespace DOAN_WEBNC.Controllers
                 hs.GioiTinh = hocSinh.GioiTinh;
                 hs.NgaySinh = hocSinh.NgaySinh;
                 hs.DiaChi = hocSinh.DiaChi;
-                hs.Email = hocSinh.Email;
+                hs.MSSV = MSSV;
                 hs.IDLop = hocSinh.IDLop;
                 hs.Image = hocSinh.Image;
 
                 ViewBag.IDLop = new SelectList(db.Lops, "IDLop", "TenLop", hocSinh.IDLop);
 
-                db.HocSinhs.Add(hs);
-                try
-                {
+                db. HocSinhs.Add(hs);
+                //try
+                //{
                     db.SaveChanges();
                     var result = await UserManager.CreateAsync(user, "123456@aA");
 
@@ -137,21 +153,21 @@ namespace DOAN_WEBNC.Controllers
                     {
                         UserManager.AddToRole(user.Id, "Student");
                     }
-                }
-                catch (DbUpdateException ex)
-                {
-                    SqlException innerException = ex.InnerException.InnerException as SqlException;
-                    if (innerException != null && innerException.Number == 2601)
-                    {
-                        ModelState.AddModelError("UniqueEmail", "Email này đã tồn tại trong hệ thống. Vui lòng nhập lại Email khác");
-                        return View("Create", hocSinh);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("UniqueEmail", "Có vẫn đề đã xảy ra khi lưu dữ liệu, try again!");
-                        return View("Create", hocSinh);
-                    }
-                }
+                //}
+                //catch (DbUpdateException ex)
+                //{
+                //    SqlException innerException = ex.InnerException.InnerException as SqlException;
+                //    if (innerException != null && innerException.Number == 2601)
+                //    {
+                //        ModelState.AddModelError("UniqueEmail", "Email này đã tồn tại trong hệ thống. Vui lòng nhập lại Email khác");
+                //        return View("Create", hocSinh);
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("UniqueEmail", "Có vẫn đề đã xảy ra khi lưu dữ liệu, try again!");
+                //        return View("Create", hocSinh);
+                //    }
+                //}
 
                 //db.SaveChanges();
                 return RedirectToAction("Index");

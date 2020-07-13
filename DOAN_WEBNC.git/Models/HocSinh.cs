@@ -34,10 +34,10 @@ namespace DOAN_WEBNC.Models
         public DateTime NgaySinh { get; set; }
         [DisplayName("Địa Chỉ")]
         public string DiaChi { get; set; }
-        [Column(TypeName = "VARCHAR")]
-        [DataType(DataType.EmailAddress)]
-        [Index(IsUnique = true)]
-        public string Email { get; set; }
+        //[Column(TypeName = "VARCHAR")]
+        //[DataType(DataType.EmailAddress)]
+        //[Index(IsUnique = true)]
+        public string MSSV { get; set; }
         [DataType(DataType.ImageUrl)]
 
         public Lop Lop { get; set; }

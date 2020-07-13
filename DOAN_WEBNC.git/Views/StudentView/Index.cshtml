@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using DOAN_WEBNC.Models
 @model HocSinh
@@ -87,7 +87,7 @@
                             <span>Mã học sinh</span>
                         </div>
                         <div class="col-sm-8">
-                            @Model.IDHocSinh
+                            @Model.MSSV
                         </div>
                     </div>
                     <div class="student-details row">
@@ -132,7 +132,7 @@
                             <span>Email</span>
                         </div>
                         <div class="col-sm-8">
-                            @Model.Email
+                            @User.Identity.Name
                         </div>
                     </div>
                 </section>

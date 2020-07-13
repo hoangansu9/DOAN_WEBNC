@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="my-container">
 
@@ -14,10 +14,13 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Lop.TenLop)
+                @Html.DisplayNameFor(model => model.MSSV)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lop.TenLop)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.GioiTinh)
@@ -28,45 +31,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.DiaChi)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lop.TenLop)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HoTen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GioiTinh)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgaySinh)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiaChi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IDHocSinh }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IDHocSinh }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IDHocSinh })
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MSSV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lop.TenLop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IDHocSinh }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IDHocSinh }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IDHocSinh })
+        </td>
+    </tr>
         }
 
     </table>

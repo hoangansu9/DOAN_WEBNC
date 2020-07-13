@@ -184,6 +184,10 @@
     <Compile Include="Migrations\202007061355520__CreateDbContext.Designer.cs">
       <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007100834501__EditColumnMSSV.cs" />
+    <Compile Include="Migrations\202007100834501__EditColumnMSSV.Designer.cs">
+      <DependentUpon>202007100834501__EditColumnMSSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDiem.cs" />
@@ -389,6 +393,8 @@
     <Content Include="Views\Lop\Details.cshtml" />
     <Content Include="Views\Lop\Edit.cshtml" />
     <Content Include="Views\Lop\Index.cshtml" />
+    <Content Include="Views\Shared\_StudentPartial.cshtml" />
+    <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\DiemHS\Create.cshtml" />
     <Content Include="Views\DiemHS\Delete.cshtml" />
     <Content Include="Views\DiemHS\Details.cshtml" />
@@ -412,6 +418,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007061355520__CreateDbContext.resx">
       <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007100834501__EditColumnMSSV.resx">
+      <DependentUpon>202007100834501__EditColumnMSSV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
