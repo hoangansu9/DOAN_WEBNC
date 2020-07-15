@@ -182,6 +182,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007150843585_getdfault_value.cs" />
+    <Compile Include="Migrations\202007150843585_getdfault_value.designer.cs">
+      <DependentUpon>202007150843585_getdfault_value.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDiem.cs" />
     <Compile Include="Models\DiemHS.cs" />
@@ -420,6 +425,11 @@
       <Project>{DBA68F2F-883B-4020-8F93-A53AE91A7606}</Project>
       <Name>SendMail</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007150843585_getdfault_value.resx">
+      <DependentUpon>202007150843585_getdfault_value.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

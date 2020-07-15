@@ -21,16 +21,16 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="colapsibleNavbar">
                 <ul class="navbar-nav">
-                   @{ 
-                       if (User.IsInRole("Admin"))
-                       {
-                           @Html.Partial("_AdminPartial")
-                       }
-                       else
-                       {
-                           @Html.Partial("_StudentPartial")
-                       }
-                   }
+                    @{
+                        if (User.IsInRole("Admin"))
+                        {
+                            @Html.Partial("_AdminPartial")
+                        }
+                        else
+                        {
+                            @Html.Partial("_StudentPartial")
+                        }
+                    }
                     @Html.Partial("_LoginPartial")
                 </ul>
             </div>
@@ -96,6 +96,7 @@
             </div>
         </div> -->
     </footer>
+    <script src="~/Scripts/ShowImg.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

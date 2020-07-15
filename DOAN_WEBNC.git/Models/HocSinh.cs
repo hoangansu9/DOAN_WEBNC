@@ -11,6 +11,11 @@ namespace DOAN_WEBNC.Models
 {
     public class HocSinh
     {
+        public HocSinh()
+         {
+
+            Image = "~/Content/Images/thumbnail.png";
+        }
 
         [Key]
         public string IDHocSinh
@@ -38,11 +43,14 @@ namespace DOAN_WEBNC.Models
         //[DataType(DataType.EmailAddress)]
         //[Index(IsUnique = true)]
         public string MSSV { get; set; }
-        [DataType(DataType.ImageUrl)]
+        
+
 
         public Lop Lop { get; set; }
         public string IDLop { get; set; }
 
+        [Display(Name ="Hình ảnh")]
+        [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
         [NotMapped]
         public HttpPostedFileBase ImageUpload { get; set; }

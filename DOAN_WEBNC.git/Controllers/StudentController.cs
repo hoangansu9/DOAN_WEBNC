@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -105,23 +106,33 @@ namespace DOAN_WEBNC.Controllers
         public async Task<ActionResult> Create([Bind(Include = "IDHocSinh,HoTen,GioiTinh,NgaySinh,DiaChi,Email,IDLop,Image")] HocSinh hocSinh)
         {
             //
-            string MSSV = "";
-            var lastStudent = db.HocSinhs.ToList().Last();
+            string MSSV = "";          
+            var countSt = db.HocSinhs.Count();
+          
             var _begin = DateTime.Now.Year.ToString().Substring(0, 2) + "ST";
-            var _end = "";
-            if (lastStudent != null)
+            string _end = "";
+            if (countSt == 0)
             {
                 _end = TaoMaTuDong("100000");
             }
             else
             {
-                _end = TaoMaTuDong(lastStudent.MSSV.Substring(0,4));
+                   var lastStudent = db.HocSinhs.ToList().Last();
+                _end = TaoMaTuDong(lastStudent.MSSV.Substring(4));
             }
 
             MSSV = _begin + _end;
 
             if (ModelState.IsValid)
             {
+                if (hocSinh.ImageUpload != null)
+                {
+                    string fileNameImg = Path.GetFileNameWithoutExtension(hocSinh.ImageUpload.FileName);
+                    string extension = Path.GetExtension(hocSinh.ImageUpload.FileName);
+                    fileNameImg = fileNameImg + extension;
+                    hocSinh.Image = "~/Content/Images/" + fileNameImg;
+                    hocSinh.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), fileNameImg));
+                }
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 
@@ -138,7 +149,7 @@ namespace DOAN_WEBNC.Controllers
                 hs.NgaySinh = hocSinh.NgaySinh;
                 hs.DiaChi = hocSinh.DiaChi;
                 hs.MSSV = MSSV;
-                hs.IDLop = hocSinh.IDLop;
+                hs.IDLop = hocSinh.IDLop;             
                 hs.Image = hocSinh.Image;
 
                 ViewBag.IDLop = new SelectList(db.Lops, "IDLop", "TenLop", hocSinh.IDLop);
