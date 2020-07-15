@@ -18,17 +18,7 @@ namespace DOAN_WEBNC.Models
         }
 
         [Key]
-        public string IDHocSinh
-        {
-            //get { ApplicationUser user = new ApplicationUser();
-
-            //    return user.Id;
-            //}
-            //set {
-            //    IDHocSinh = value;
-            //} 
-            get;set;
-        }
+        public string IDHocSinh{get;set;}
         [Required(ErrorMessage = "Tên Học Sinh không được để trống")]
         [DisplayName("Họ Tên")]
         public string HoTen { get; set; }
@@ -43,11 +33,11 @@ namespace DOAN_WEBNC.Models
         //[DataType(DataType.EmailAddress)]
         //[Index(IsUnique = true)]
         public string MSSV { get; set; }
-        
 
-
+        [Display(Name ="Lớp")]
+        [ForeignKey("Lop")]
+        public int IDLop { get; set; }
         public Lop Lop { get; set; }
-        public string IDLop { get; set; }
 
         [Display(Name ="Hình ảnh")]
         [DataType(DataType.ImageUrl)]

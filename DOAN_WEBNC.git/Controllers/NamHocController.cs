@@ -10,120 +10,107 @@ using DOAN_WEBNC.Models;
 
 namespace DOAN_WEBNC.Controllers
 {
-    public class DiemHSController : Controller
+    public class NamHocController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: DiemHS
+        // GET: NamHoc
         public ActionResult Index()
         {
-            var diemHocSinhs = db.DiemHocSinhs.Include(d => d.HocKy).Include(d => d.HocSinh).Include(d => d.MonHoc);
-            return View(diemHocSinhs.ToList());
+            return View(db.NamHocs.ToList());
         }
 
-        // GET: DiemHS/Details/5
+        // GET: NamHoc/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiemHS diemHS = db.DiemHocSinhs.Find(id);
-            if (diemHS == null)
+            NamHoc namHoc = db.NamHocs.Find(id);
+            if (namHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(diemHS);
+            return View(namHoc);
         }
 
-        // GET: DiemHS/Create
+        // GET: NamHoc/Create
         public ActionResult Create()
         {
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy");
-            ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen");
-            ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc");
             return View();
         }
 
-        // POST: DiemHS/Create
+        // POST: NamHoc/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDHocKy")] DiemHS diemHS)
+        public ActionResult Create([Bind(Include = "IDNamHoc,TenNamHoc")] NamHoc namHoc)
         {
             if (ModelState.IsValid)
             {
-                db.DiemHocSinhs.Add(diemHS);
+                db.NamHocs.Add(namHoc);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy", diemHS.IDHocKy);
-            ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
-            ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
-            return View(diemHS);
+            return View(namHoc);
         }
 
-        // GET: DiemHS/Edit/5
+        // GET: NamHoc/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiemHS diemHS = db.DiemHocSinhs.Find(id);
-            if (diemHS == null)
+            NamHoc namHoc = db.NamHocs.Find(id);
+            if (namHoc == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy", diemHS.IDHocKy);
-            ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
-            ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
-            return View(diemHS);
+            return View(namHoc);
         }
 
-        // POST: DiemHS/Edit/5
+        // POST: NamHoc/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDHocKy")] DiemHS diemHS)
+        public ActionResult Edit([Bind(Include = "IDNamHoc,TenNamHoc")] NamHoc namHoc)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(diemHS).State = EntityState.Modified;
+                db.Entry(namHoc).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy", diemHS.IDHocKy);
-            ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
-            ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
-            return View(diemHS);
+            return View(namHoc);
         }
 
-        // GET: DiemHS/Delete/5
+        // GET: NamHoc/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiemHS diemHS = db.DiemHocSinhs.Find(id);
-            if (diemHS == null)
+            NamHoc namHoc = db.NamHocs.Find(id);
+            if (namHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(diemHS);
+            return View(namHoc);
         }
 
-        // POST: DiemHS/Delete/5
+        // POST: NamHoc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DiemHS diemHS = db.DiemHocSinhs.Find(id);
-            db.DiemHocSinhs.Remove(diemHS);
+            NamHoc namHoc = db.NamHocs.Find(id);
+            db.NamHocs.Remove(namHoc);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

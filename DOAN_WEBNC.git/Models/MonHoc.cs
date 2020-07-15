@@ -13,6 +13,7 @@ namespace DOAN_WEBNC.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IDMonHoc { get; set; }
+
         [Display(Name = "Tên môn học")]
         [Required(ErrorMessage = "Tên môn học không được để trống")]
         public string TenMonHoc { get; set; }

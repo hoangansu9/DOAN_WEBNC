@@ -22,10 +22,12 @@ namespace DOAN_WEBNC.Models
         public int MaMonHoc { get; set; }
 
         public MonHoc MonHoc { get; set; }
+
+
         [ForeignKey("HocKy")]
         [Required(ErrorMessage = "Học kỳ không được để trống")]
         public int IDHocKy { get; set; }
-        public HocKy HocKy { get; set; }
+        public  HocKy HocKy { get; set; }
         public ICollection<ChiTietDiem> ChiTietDiems { get; set; }
     }
 }

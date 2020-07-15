@@ -106,19 +106,18 @@ namespace DOAN_WEBNC.Controllers
         public async Task<ActionResult> Create([Bind(Include = "IDHocSinh,HoTen,GioiTinh,NgaySinh,DiaChi,Email,IDLop,Image")] HocSinh hocSinh)
         {
             //
-            string MSSV = "";          
+            string MSSV = "";
             var countSt = db.HocSinhs.Count();
-          
             var _begin = DateTime.Now.Year.ToString().Substring(0, 2) + "ST";
-            string _end = "";
+            var _end = "";
             if (countSt == 0)
             {
                 _end = TaoMaTuDong("100000");
             }
             else
             {
-                   var lastStudent = db.HocSinhs.ToList().Last();
-                _end = TaoMaTuDong(lastStudent.MSSV.Substring(4));
+                var lastStudent = db.HocSinhs.ToList().OrderBy(m => m.MSSV).Last();
+                _end = TaoMaTuDong(lastStudent.MSSV.Substring(4, lastStudent.MSSV.Length - 4));
             }
 
             MSSV = _begin + _end;
