@@ -1,4 +1,4 @@
-﻿@model DOAN_WEBNC.Models.Lop
+﻿@model DOAN_WEBNC.Models.MonHoc
 
 @{
     ViewBag.Title = "Details";
@@ -8,20 +8,20 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Lop</h4>
+    <h4>MonHoc</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenLop)
+            @Html.DisplayNameFor(model => model.TenMonHoc)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TenLop)
+            @Html.DisplayFor(model => model.TenMonHoc)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDLop }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDMonHoc }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

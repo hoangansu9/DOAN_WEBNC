@@ -16,13 +16,14 @@ namespace DOAN_WEBNC.Models
     public class HocKy
     {
         [Key]
-        public string IDHocKy { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IDHocKy { get; set; }
         [Display(Name ="Học kỳ")]
         public TenHocKy TenHocKy { get; set; }
 
         [Display(Name = "Năm học")]
         [ForeignKey("NamHoc")]
-        public string IDNamHoc { get; set; }
+        public int IDNamHoc { get; set; }
         public NamHoc NamHoc { get; set; }
 
         ICollection<DiemHS> DiemHs { get; set; }
@@ -31,7 +32,8 @@ namespace DOAN_WEBNC.Models
     public class NamHoc
     {
         [Key]
-        public string IDNamHoc { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IDNamHoc { get; set; }
         [Required(ErrorMessage = "Năm học không được để trống")]
         public string TenNamHoc { get; set; }
 

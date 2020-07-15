@@ -25,14 +25,8 @@ namespace DOAN_WEBNC.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-        }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
         }
-
-        
         public DbSet<NamHoc> NamHocs { get; set; }
         public DbSet<MonHoc> MonHocs { get; set; }
         public DbSet<Lop> Lops { get; set; }
@@ -56,6 +50,15 @@ namespace DOAN_WEBNC.Models
             modelBuilder.Entity<IdentityUser>().ToTable("AspNetUsers");
 
         }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
+
+        
+       
+       
 
     }
 

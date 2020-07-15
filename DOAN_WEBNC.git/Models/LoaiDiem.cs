@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DOAN_WEBNC.Models
 {
@@ -7,7 +8,8 @@ namespace DOAN_WEBNC.Models
     {
         //Không cần tạo View Mieng / 15p /1tiet / thi/ chuyen can
         [Key]
-        public string IDLoaiDiem { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IDLoaiDiem { get; set; }
 
         [Display(Name = "Tên loại")]
         public string TenLoai { get; set; }

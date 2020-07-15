@@ -10,107 +10,107 @@ using DOAN_WEBNC.Models;
 
 namespace DOAN_WEBNC.Controllers
 {
-    public class LopController : Controller
+    public class MonHocController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Lop
+        // GET: MonHoc
         public ActionResult Index()
         {
-            return View(db.Lops.ToList());
+            return View(db.MonHocs.ToList());
         }
 
-        // GET: Lop/Details/5
+        // GET: MonHoc/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lop lop = db.Lops.Find(id);
-            if (lop == null)
+            MonHoc monHoc = db.MonHocs.Find(id);
+            if (monHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(lop);
+            return View(monHoc);
         }
 
-        // GET: Lop/Create
+        // GET: MonHoc/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Lop/Create
+        // POST: MonHoc/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDLop,TenLop")] Lop lop)
+        public ActionResult Create([Bind(Include = "IDMonHoc,TenMonHoc")] MonHoc monHoc)
         {
             if (ModelState.IsValid)
             {
-                db.Lops.Add(lop);
+                db.MonHocs.Add(monHoc);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(lop);
+            return View(monHoc);
         }
 
-        // GET: Lop/Edit/5
+        // GET: MonHoc/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lop lop = db.Lops.Find(id);
-            if (lop == null)
+            MonHoc monHoc = db.MonHocs.Find(id);
+            if (monHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(lop);
+            return View(monHoc);
         }
 
-        // POST: Lop/Edit/5
+        // POST: MonHoc/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDLop,TenLop")] Lop lop)
+        public ActionResult Edit([Bind(Include = "IDMonHoc,TenMonHoc")] MonHoc monHoc)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lop).State = EntityState.Modified;
+                db.Entry(monHoc).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(lop);
+            return View(monHoc);
         }
 
-        // GET: Lop/Delete/5
+        // GET: MonHoc/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lop lop = db.Lops.Find(id);
-            if (lop == null)
+            MonHoc monHoc = db.MonHocs.Find(id);
+            if (monHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(lop);
+            return View(monHoc);
         }
 
-        // POST: Lop/Delete/5
+        // POST: MonHoc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Lop lop = db.Lops.Find(id);
-            db.Lops.Remove(lop);
+            MonHoc monHoc = db.MonHocs.Find(id);
+            db.MonHocs.Remove(monHoc);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

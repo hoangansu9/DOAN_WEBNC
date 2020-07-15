@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -47,6 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -114,12 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -174,21 +175,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MonHocController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007061355520__CreateDbContext.cs" />
-    <Compile Include="Migrations\202007061355520__CreateDbContext.Designer.cs">
-      <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007100834501__EditColumnMSSV.cs" />
-    <Compile Include="Migrations\202007100834501__EditColumnMSSV.Designer.cs">
-      <DependentUpon>202007100834501__EditColumnMSSV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDiem.cs" />
     <Compile Include="Models\DiemHS.cs" />
@@ -213,6 +206,7 @@
     <Content Include="Content\Images\lg.png" />
     <Content Include="Content\Images\nav-bg.jpg" />
     <Content Include="Content\Images\student-img.png" />
+    <Content Include="Content\Images\thumbnail.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
@@ -266,6 +260,7 @@
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\ShowImg.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -388,11 +383,6 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\StudentView\Index.cshtml" />
-    <Content Include="Views\Lop\Create.cshtml" />
-    <Content Include="Views\Lop\Delete.cshtml" />
-    <Content Include="Views\Lop\Details.cshtml" />
-    <Content Include="Views\Lop\Edit.cshtml" />
-    <Content Include="Views\Lop\Index.cshtml" />
     <Content Include="Views\Shared\_StudentPartial.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\DiemHS\Create.cshtml" />
@@ -400,6 +390,16 @@
     <Content Include="Views\DiemHS\Details.cshtml" />
     <Content Include="Views\DiemHS\Edit.cshtml" />
     <Content Include="Views\DiemHS\Index.cshtml" />
+    <Content Include="Views\Lop\Create.cshtml" />
+    <Content Include="Views\Lop\Delete.cshtml" />
+    <Content Include="Views\Lop\Details.cshtml" />
+    <Content Include="Views\Lop\Edit.cshtml" />
+    <Content Include="Views\Lop\Index.cshtml" />
+    <Content Include="Views\MonHoc\Create.cshtml" />
+    <Content Include="Views\MonHoc\Delete.cshtml" />
+    <Content Include="Views\MonHoc\Details.cshtml" />
+    <Content Include="Views\MonHoc\Edit.cshtml" />
+    <Content Include="Views\MonHoc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,14 +414,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007061355520__CreateDbContext.resx">
-      <DependentUpon>202007061355520__CreateDbContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007100834501__EditColumnMSSV.resx">
-      <DependentUpon>202007100834501__EditColumnMSSV.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SendMail\SendMail.csproj">
@@ -463,7 +455,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

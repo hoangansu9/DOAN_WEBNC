@@ -7,10 +7,10 @@ namespace DOAN_WEBNC.Models
     {
         [ForeignKey("DiemHS")]
         [Key, Column(Order = 1)]
-        public string MaBangDiem { get; set; }
+        public int MaBangDiem { get; set; }
         [ForeignKey("LoaiDiem")]
         [Key, Column(Order = 2)]
-        public string IDLoaiDiem { get; set; }
+        public int IDLoaiDiem { get; set; }
         [Key, Column(Order = 3)]
         [Display(Name ="Lần thi")]
         public int LanThi { get; set; }
