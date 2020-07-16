@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,13 +52,32 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc,TenHocKy")] DiemHS diemHS)
+        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc")] DiemHS diemHS)
         {
             if (ModelState.IsValid)
             {
-                db.DiemHocSinhs.Add(diemHS);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                 db.DiemHocSinhs.Add(diemHS);
+                                db.SaveChanges();
+                                return RedirectToAction("Index");
+                }
+                catch (DbUpdateException ex)
+                {
+                    SqlException innerException = ex.InnerException.InnerException as SqlException;
+                    if (innerException != null && innerException.Number == 2601)
+                    {
+                        ModelState.AddModelError("UniqueHocKy", "Học kỳ {0} này đã tồn tại trong hệ thống. Vui lòng nhập lại Email khác");
+                        return View("Create", diemHS);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UniqueHocKy", "Có vẫn đề đã xảy ra khi lưu dữ liệu, try again!");
+                        return View("Create", diemHS);
+                    }
+                }
+
+
             }
 
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
@@ -88,7 +109,7 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc,TenHocKy")] DiemHS diemHS)
+        public ActionResult Edit([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc")] DiemHS diemHS)
         {
             if (ModelState.IsValid)
             {

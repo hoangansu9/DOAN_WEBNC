@@ -7,6 +7,7 @@ namespace DOAN_WEBNC.Models
     public class DiemHS
     {
         [Key]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaBangDiem { get; set; }
         
@@ -25,10 +26,13 @@ namespace DOAN_WEBNC.Models
 
 
         [ForeignKey("NamHoc")]
-        [Required(ErrorMessage = "Học kỳ không được để trống")]
+       
+        //[Index(IsUnique = true)]
+        [Required(ErrorMessage = "Học kỳ không được để trống")]       
+        
         public int IDNamHoc { get; set; }
 
-        public  NamHoc NamHoc { get; set; }
+        public  NamHoc NamHoc { get; set; } 
         public ICollection<ChiTietDiem> ChiTietDiems { get; set; }
     }
 }
