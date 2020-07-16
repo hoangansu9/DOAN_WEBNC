@@ -17,7 +17,7 @@ namespace DOAN_WEBNC.Controllers
         // GET: DiemHS
         public ActionResult Index()
         {
-            var diemHocSinhs = db.DiemHocSinhs.Include(d => d.HocKy).Include(d => d.HocSinh).Include(d => d.MonHoc);
+            var diemHocSinhs = db.DiemHocSinhs.Include(d => d.HocSinh).Include(d => d.MonHoc).Include(d => d.NamHoc);
             return View(diemHocSinhs.ToList());
         }
 
@@ -39,9 +39,11 @@ namespace DOAN_WEBNC.Controllers
         // GET: DiemHS/Create
         public ActionResult Create()
         {
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy");
+
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen");
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc");
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "TenNamHoc");
+
             return View();
         }
 
@@ -50,7 +52,7 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDHocKy")] DiemHS diemHS)
+        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc,TenHocKy")] DiemHS diemHS)
         {
             if (ModelState.IsValid)
             {
@@ -59,9 +61,9 @@ namespace DOAN_WEBNC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy", diemHS.IDHocKy);
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "IDNamHoc", diemHS.IDNamHoc);
             return View(diemHS);
         }
 
@@ -77,9 +79,9 @@ namespace DOAN_WEBNC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy", diemHS.IDHocKy);
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "IDNamHoc", diemHS.IDNamHoc);
             return View(diemHS);
         }
 
@@ -88,7 +90,7 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDHocKy")] DiemHS diemHS)
+        public ActionResult Edit([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc,TenHocKy")] DiemHS diemHS)
         {
             if (ModelState.IsValid)
             {
@@ -96,9 +98,9 @@ namespace DOAN_WEBNC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDHocKy = new SelectList(db.HocKys, "IDHocKy", "IDHocKy", diemHS.IDHocKy);
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "IDNamHoc", diemHS.IDNamHoc);
             return View(diemHS);
         }
 

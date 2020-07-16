@@ -32,7 +32,6 @@ namespace DOAN_WEBNC.Models
         public DbSet<Lop> Lops { get; set; }
         public DbSet<HocSinh> HocSinhs { get; set; }
         public DbSet<LoaiDiem> LoaiDiems { get; set; }
-        public DbSet<HocKy> HocKys { get; set; }
         public DbSet<DiemHS> DiemHocSinhs { get; set; }
         public DbSet<ChiTietDiem> ChiTietDiems { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

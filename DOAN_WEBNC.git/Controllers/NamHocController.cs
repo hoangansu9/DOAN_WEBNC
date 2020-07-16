@@ -46,11 +46,19 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDNamHoc,TenNamHoc")] NamHoc namHoc)
+        public ActionResult Create([Bind(Include = "IDNamHoc,TenHocKy,TenNamHoc,StartYear,EndYear")] NamHoc namHoc)
         {
             if (ModelState.IsValid)
             {
                 db.NamHocs.Add(namHoc);
+                NamHoc namHoc2 = new NamHoc();
+                namHoc2.IDNamHoc = namHoc.IDNamHoc;
+                namHoc2.TenNamHoc = namHoc.TenNamHoc;
+                namHoc2.StartYear = namHoc.StartYear;
+                namHoc2.EndYear = namHoc.EndYear;
+                namHoc2.TenHocKy = TenHocKy.HK2;
+                db.NamHocs.Add(namHoc2);
+                db.SaveChanges();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -78,7 +86,7 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDNamHoc,TenNamHoc")] NamHoc namHoc)
+        public ActionResult Edit([Bind(Include = "IDNamHoc,TenHocKy,TenNamHoc,StartYear,EndYear")] NamHoc namHoc)
         {
             if (ModelState.IsValid)
             {

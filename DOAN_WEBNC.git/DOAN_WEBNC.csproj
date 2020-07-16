@@ -183,9 +183,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007151554088__CreateDb.cs" />
+    <Compile Include="Migrations\202007151554088__CreateDb.designer.cs">
+      <DependentUpon>202007151554088__CreateDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007151631218__update_column_namhoc.cs" />
+    <Compile Include="Migrations\202007151631218__update_column_namhoc.designer.cs">
+      <DependentUpon>202007151631218__update_column_namhoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDiem.cs" />
     <Compile Include="Models\DiemHS.cs" />
+    <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\HocSinh.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiDiem.cs" />
@@ -386,11 +396,6 @@
     <Content Include="Views\StudentView\Index.cshtml" />
     <Content Include="Views\Shared\_StudentPartial.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
-    <Content Include="Views\DiemHS\Create.cshtml" />
-    <Content Include="Views\DiemHS\Delete.cshtml" />
-    <Content Include="Views\DiemHS\Details.cshtml" />
-    <Content Include="Views\DiemHS\Edit.cshtml" />
-    <Content Include="Views\DiemHS\Index.cshtml" />
     <Content Include="Views\Lop\Create.cshtml" />
     <Content Include="Views\Lop\Delete.cshtml" />
     <Content Include="Views\Lop\Details.cshtml" />
@@ -401,6 +406,11 @@
     <Content Include="Views\MonHoc\Details.cshtml" />
     <Content Include="Views\MonHoc\Edit.cshtml" />
     <Content Include="Views\MonHoc\Index.cshtml" />
+    <Content Include="Views\DiemHS\Create.cshtml" />
+    <Content Include="Views\DiemHS\Delete.cshtml" />
+    <Content Include="Views\DiemHS\Details.cshtml" />
+    <Content Include="Views\DiemHS\Edit.cshtml" />
+    <Content Include="Views\DiemHS\Index.cshtml" />
     <Content Include="Views\NamHoc\Create.cshtml" />
     <Content Include="Views\NamHoc\Delete.cshtml" />
     <Content Include="Views\NamHoc\Details.cshtml" />
@@ -426,6 +436,14 @@
       <Project>{DBA68F2F-883B-4020-8F93-A53AE91A7606}</Project>
       <Name>SendMail</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007151554088__CreateDb.resx">
+      <DependentUpon>202007151554088__CreateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007151631218__update_column_namhoc.resx">
+      <DependentUpon>202007151631218__update_column_namhoc.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

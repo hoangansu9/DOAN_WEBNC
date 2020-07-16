@@ -24,10 +24,16 @@ namespace DOAN_WEBNC.Models
         public MonHoc MonHoc { get; set; }
 
 
-        [ForeignKey("HocKy")]
+        [ForeignKey("NamHoc")]
+        [Column(Order = 0)]
         [Required(ErrorMessage = "Học kỳ không được để trống")]
-        public int IDHocKy { get; set; }
-        public  HocKy HocKy { get; set; }
+        public int IDNamHoc { get; set; }
+        [ForeignKey("NamHoc")]
+        [Column(Order = 1)]
+        [Required(ErrorMessage = "Học kỳ không được để trống")]
+        public TenHocKy TenHocKy { get; set; }
+
+        public  NamHoc NamHoc { get; set; }
         public ICollection<ChiTietDiem> ChiTietDiems { get; set; }
     }
 }
