@@ -56,7 +56,6 @@ namespace DOAN_WEBNC.Controllers
                 namHoc2.TenNamHoc = namHoc.TenNamHoc;
                 namHoc2.StartYear = namHoc.StartYear;
                 namHoc2.EndYear = namHoc.EndYear;
-                namHoc2.TenHocKy = TenHocKy.HK2;
                 db.NamHocs.Add(namHoc2);
                 db.SaveChanges();
                 db.SaveChanges();
