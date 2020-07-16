@@ -8,9 +8,9 @@ namespace DOAN_WEBNC.Models
         [ForeignKey("DiemHS")]
         [Key, Column(Order = 1)]
         public int MaBangDiem { get; set; }
-        [ForeignKey("LoaiDiem")]
+      
         [Key, Column(Order = 2)]
-        public int IDLoaiDiem { get; set; }
+        public TenLoaiDiem LoaiDiem { get; set; }
         [Key, Column(Order = 3)]
         [Display(Name ="Lần thi")]
         public int LanThi { get; set; }
@@ -21,6 +21,6 @@ namespace DOAN_WEBNC.Models
         public double Diem { get; set; }
 
         public DiemHS DiemHS { get; set; }
-        public LoaiDiem LoaiDiem { get; set; }
+       
     }
 }

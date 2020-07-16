@@ -4,3 +4,9 @@ C:\Users\An\Desktop\DOANWEB\SendMail\obj\Debug\SendMail.csprojAssemblyReference.
 C:\Users\An\Desktop\DOANWEB\SendMail\obj\Debug\SendMail.csproj.CoreCompileInputs.cache
 C:\Users\An\Desktop\DOANWEB\SendMail\obj\Debug\SendMail.dll
 C:\Users\An\Desktop\DOANWEB\SendMail\obj\Debug\SendMail.pdb
+C:\Users\AN-LAPTOP\Desktop\DO AN\DOAN WEB\SendMail\bin\Debug\SendMail.dll
+C:\Users\AN-LAPTOP\Desktop\DO AN\DOAN WEB\SendMail\bin\Debug\SendMail.pdb
+C:\Users\AN-LAPTOP\Desktop\DO AN\DOAN WEB\SendMail\obj\Debug\SendMail.csprojAssemblyReference.cache
+C:\Users\AN-LAPTOP\Desktop\DO AN\DOAN WEB\SendMail\obj\Debug\SendMail.csproj.CoreCompileInputs.cache
+C:\Users\AN-LAPTOP\Desktop\DO AN\DOAN WEB\SendMail\obj\Debug\SendMail.dll
+C:\Users\AN-LAPTOP\Desktop\DO AN\DOAN WEB\SendMail\obj\Debug\SendMail.pdb

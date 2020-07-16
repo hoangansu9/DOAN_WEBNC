@@ -191,6 +191,10 @@
     <Compile Include="Migrations\202007151631218__update_column_namhoc.designer.cs">
       <DependentUpon>202007151631218__update_column_namhoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007160806484__add_ennum.cs" />
+    <Compile Include="Migrations\202007160806484__add_ennum.designer.cs">
+      <DependentUpon>202007160806484__add_ennum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDiem.cs" />
@@ -198,7 +202,6 @@
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\HocSinh.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LoaiDiem.cs" />
     <Compile Include="Models\Lop.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MonHoc.cs" />
@@ -406,16 +409,16 @@
     <Content Include="Views\MonHoc\Details.cshtml" />
     <Content Include="Views\MonHoc\Edit.cshtml" />
     <Content Include="Views\MonHoc\Index.cshtml" />
-    <Content Include="Views\DiemHS\Create.cshtml" />
-    <Content Include="Views\DiemHS\Delete.cshtml" />
-    <Content Include="Views\DiemHS\Details.cshtml" />
-    <Content Include="Views\DiemHS\Edit.cshtml" />
-    <Content Include="Views\DiemHS\Index.cshtml" />
     <Content Include="Views\NamHoc\Create.cshtml" />
     <Content Include="Views\NamHoc\Delete.cshtml" />
     <Content Include="Views\NamHoc\Details.cshtml" />
     <Content Include="Views\NamHoc\Edit.cshtml" />
     <Content Include="Views\NamHoc\Index.cshtml" />
+    <Content Include="Views\DiemHS\Create.cshtml" />
+    <Content Include="Views\DiemHS\Delete.cshtml" />
+    <Content Include="Views\DiemHS\Details.cshtml" />
+    <Content Include="Views\DiemHS\Edit.cshtml" />
+    <Content Include="Views\DiemHS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -443,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007151631218__update_column_namhoc.resx">
       <DependentUpon>202007151631218__update_column_namhoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007160806484__add_ennum.resx">
+      <DependentUpon>202007160806484__add_ennum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,16 +12,14 @@ namespace DOAN_WEBNC.Models
     public class NamHoc
     {
         [Key]
-        [Column(Order = 0)]
+     
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IDNamHoc { get; set; }
-        [Key]
-        [Column(Order = 1)]
-        public TenHocKy TenHocKy { get; set; }
-
-
+        public int IDNamHoc { get; set; }      
+        [Display(Name ="Năm học")]
         public string TenNamHoc { get; set; }
+        [Display(Name ="Bắt đầu")]
         public DateTime StartYear { get; set; }
+        [Display(Name ="Kết thúc")]
         public DateTime EndYear { get; set; }
 
         public ICollection<DiemHS> DiemHS { get; set; }

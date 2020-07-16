@@ -14,4 +14,13 @@ namespace DOAN_WEBNC.Models
         Nam,
         Nữ
     }
+    public enum TenLoaiDiem
+    {
+        Loai1,
+        Loai2, 
+        Loai3,
+        THI,
+        TBHK,    
+        TBNH
+    }
 }

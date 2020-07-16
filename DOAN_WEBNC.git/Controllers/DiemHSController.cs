@@ -39,11 +39,9 @@ namespace DOAN_WEBNC.Controllers
         // GET: DiemHS/Create
         public ActionResult Create()
         {
-
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen");
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc");
             ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "TenNamHoc");
-
             return View();
         }
 
@@ -63,7 +61,7 @@ namespace DOAN_WEBNC.Controllers
 
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
-            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "IDNamHoc", diemHS.IDNamHoc);
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "TenNamHoc", diemHS.IDNamHoc);
             return View(diemHS);
         }
 
@@ -81,7 +79,7 @@ namespace DOAN_WEBNC.Controllers
             }
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
-            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "IDNamHoc", diemHS.IDNamHoc);
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "TenNamHoc", diemHS.IDNamHoc);
             return View(diemHS);
         }
 
@@ -100,7 +98,7 @@ namespace DOAN_WEBNC.Controllers
             }
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen", diemHS.MaHocSinh);
             ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc", diemHS.MaMonHoc);
-            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "IDNamHoc", diemHS.IDNamHoc);
+            ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "TenNamHoc", diemHS.IDNamHoc);
             return View(diemHS);
         }
 
