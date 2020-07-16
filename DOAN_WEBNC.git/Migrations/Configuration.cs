@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DOAN_WEBNC.Models.ApplicationDbContext";
         }
 
         protected override void Seed(DOAN_WEBNC.Models.ApplicationDbContext context)

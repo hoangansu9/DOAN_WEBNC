@@ -7,13 +7,13 @@ namespace DOAN_WEBNC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class _InitialDb : IMigrationMetadata
+    public sealed partial class _update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_InitialDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_update));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007160851014__InitialDb"; }
+            get { return "202007161344550__update"; }
         }
         
         string IMigrationMetadata.Source
