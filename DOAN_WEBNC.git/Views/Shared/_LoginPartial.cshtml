@@ -1,11 +1,23 @@
 ﻿@using Microsoft.AspNet.Identity
+@using DOAN_WEBNC.Models
+@{ 
+    var index = User.Identity.Name.IndexOf("@");
+    var Name = User.Identity.Name.Remove(index);
+    if(User.IsInRole("Student"))
+    {
+        var userID = (new ApplicationDbContext()).Users.FirstOrDefault(m => m.UserName == User.Identity.Name).Id;
+        Name = (new ApplicationDbContext()).HocSinhs.FirstOrDefault(m => m.IDHocSinh == userID).HoTen;
+
+    }
+}
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-nav" }))
     {
         @Html.AntiForgeryToken()
+        //if(User.IsInRole("Admin"))
         <li class="nav-item">
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" , @class = "nav-link"})
+            @Html.ActionLink("Hello " + Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" , @class = "nav-link"})
         </li>
         <li class="nav-item">
             <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>

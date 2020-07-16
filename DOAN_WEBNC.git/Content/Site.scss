@@ -6,16 +6,20 @@
     padding: 0;
     text-rendering: optimizeLegibility;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 18px;
     position: relative;
+    scroll-behavior: smooth;
 }
 /*a:hover{
     color: #fff;
 }*/
-a:focus,
-a:active, 
-a:visited{
-    color:#007bff ;
+a {
+    &:focus, &:active, &:visited {
+        color: #007bff;
+    }
+    &:hover{
+        text-decoration:none;
+    }
 }
 .my-container{
     width: 100% !important;
@@ -93,7 +97,7 @@ header {
         .school-name {
             height: 50px;
             padding: 0;
-            font-size: 20px;
+            font-size: 25px;
             margin-top: 65px;
             color: #fff;
             text-transform: uppercase;
@@ -124,7 +128,7 @@ header {
                         color: #fff;
                         transition: all .3s;
                         padding: 10px 15px;
-
+                        font-size: 18px;
                         &:hover {
                             color: #fff;
                             transform: scale(1.1);
@@ -173,9 +177,22 @@ footer {
     select:-webkit-autofill,
     select:-webkit-autofill:hover,
     select:-webkit-autofill:focus {
-        -webkit-text-fill-color: #fff;
+        -webkit-text-fill-color: #333;
         -webkit-box-shadow: 0 0 0px 1000px transparent inset;
         transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .btn-warning {
+        height: 40px;
+        width: 40px;
+        font-size: 18px;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        padding: 5px 0 !important;
+        i{
+            color: #fff;
+        }
     }
 
     padding-top: 40px;
