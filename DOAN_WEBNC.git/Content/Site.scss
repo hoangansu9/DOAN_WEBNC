@@ -11,7 +11,7 @@
     scroll-behavior: smooth;
 }
 body{
-    margin-top:150px;
+    padding-top:99px;
 }
 /*a:hover{
     color: #fff;
@@ -151,11 +151,11 @@ header {
     }
 }
 
-/*main {
-    height: 100%;
+main {
+    //height: 100%;
     padding-top: 50px;
     padding-bottom: 50px !important;
-}*/
+}
 
 footer {
     input:-webkit-autofill,
@@ -167,7 +167,7 @@ footer {
     select:-webkit-autofill,
     select:-webkit-autofill:hover,
     select:-webkit-autofill:focus {
-        -webkit-text-fill-color: #333;
+        -webkit-text-fill-color: #fff;
         -webkit-box-shadow: 0 0 0px 1000px transparent inset;
         transition: background-color 5000s ease-in-out 0s;
     }
@@ -296,7 +296,7 @@ table {
         tr {
             background-color: #2892c4;
             color: #ffffff;
-            text-align: left;
+            text-align: center;
             font-weight: bold;
         }
     }
@@ -308,7 +308,7 @@ table {
     tbody {
         tr {
             border-bottom: 1px solid #dddddd;
-            text-align: left;
+            text-align: center;
 
             &:nth-of-type(even) {
                 background-color: #ebebeb5e;

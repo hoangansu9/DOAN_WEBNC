@@ -6,6 +6,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
 
 namespace DOAN_WEBNC.Controllers
 {
@@ -25,7 +27,7 @@ namespace DOAN_WEBNC.Controllers
                     userID = userIdClaim.Value;
                 }
             }
-            var student = db.HocSinhs.FirstOrDefault(x => x.IDHocSinh == userID);
+            var student = db.HocSinhs.Include(m => m.Lop).FirstOrDefault(x => x.IDHocSinh == userID);
             
             if (student != null)
             {
