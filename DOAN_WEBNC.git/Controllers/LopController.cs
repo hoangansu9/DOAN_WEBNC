@@ -49,17 +49,36 @@ namespace DOAN_WEBNC.Controllers
             }
             var bangDiem = db.DiemHocSinhs.Include(d => d.HocSinh)
                 .Include(d => d.MonHoc).Include(d => d.NamHoc)
-                .Where(m => m.MaHocSinh == id).ToList();
+                .Where(m => m.MaHocSinh == id).OrderBy(m => m.IDNamHoc).ToList();
+
+            var bangDiemHK1 = bangDiem.Where(m => m.NamHoc.TenNamHoc.Substring(m.NamHoc.TenNamHoc.Length -3,3) == "HK1");
+            var bangDiemHK2 = bangDiem.Where(m => m.NamHoc.TenNamHoc.Substring(m.NamHoc.TenNamHoc.Length - 3, 3) == "HK2");
+
             CTDiemTungHSVM cTDiemTungHS = new CTDiemTungHSVM();
-            ViewBag.NamHoc = bangDiem.First().NamHoc.TenNamHoc;
+            ViewBag.HK1 = bangDiemHK1.First().NamHoc.TenNamHoc;
+            ViewBag.HK2 = bangDiemHK2.First().NamHoc.TenNamHoc;
             ViewBag.TenHS = bangDiem.First().HocSinh.HoTen;
-            var listDiem = bangDiem.Select(m => new CTDiemTungHSVM
+            var listDiemHK1 = bangDiemHK1.Select(m => new CTDiemTungHSVM
             {
                 MaBangDiem = m.MaBangDiem,
                 TenMon = m.MonHoc.TenMonHoc,
                 DiemTong = 0
             }).ToList();
-            foreach (var item in listDiem)
+            var listDiemHK2 = bangDiemHK2.Select(m => new CTDiemTungHSVM
+            {
+                MaBangDiem = m.MaBangDiem,
+                TenMon = m.MonHoc.TenMonHoc,
+                DiemTong = 0
+            }).ToList();
+
+            var listDiemCN = bangDiemHK2.Select(m => new DiemCaNamVM
+            {
+                TenMH = m.MonHoc.TenMonHoc,
+                DiemTBCN = 0
+            }).ToList();
+            double TBHK1 = 0, TBHK2 = 0, TBCN = 0;
+            
+            foreach (var item in listDiemHK1)
             {
                 var chiTietDiem = db.ChiTietDiems.Where(m => m.MaBangDiem == item.MaBangDiem).ToList();
                 foreach(var tmp in chiTietDiem)
@@ -97,10 +116,65 @@ namespace DOAN_WEBNC.Controllers
                             }
                            
                     }
-                   
-                }    
+                }
+                TBHK1 += item.DiemTong;
             }
-            return View(listDiem);
+            foreach (var item in listDiemHK2)
+            {
+                var chiTietDiem = db.ChiTietDiems.Where(m => m.MaBangDiem == item.MaBangDiem).ToList();
+                foreach (var tmp in chiTietDiem)
+                {
+                    switch (tmp.LoaiDiem)
+                    {
+                        case TenLoaiDiem.Loai1:
+                            {
+                                item.DiemTong += tmp.Diem;
+
+                                break;
+                            }
+                        case TenLoaiDiem.Loai2:
+                            {
+                                double temp = 0;
+                                if (tmp.LanThi == 1) { temp += tmp.Diem; }
+                                if (tmp.LanThi == 2) { temp += tmp.Diem; }
+                                if (tmp.LanThi == 3) { temp += tmp.Diem; }
+                                item.DiemTong += temp;
+                                break;
+                            }
+                        case TenLoaiDiem.Loai3:
+                            {
+                                double temp = 0;
+                                if (tmp.LanThi == 1) { temp += tmp.Diem * 2; }
+                                if (tmp.LanThi == 2) { temp += tmp.Diem * 2; }
+                                item.DiemTong += temp;
+                                break;
+                            }
+                        case TenLoaiDiem.THI:
+                            {
+                                item.DiemTong += tmp.Diem * 3;
+                                item.DiemTong = Math.Round(item.DiemTong = item.DiemTong / 11, 2);
+                                break;
+                            }
+
+                    }
+                }
+                TBHK2 += item.DiemTong;
+            }
+            for (int i = 0; i < listDiemCN.Count(); i++)
+            {
+                if(listDiemCN[i].TenMH == listDiemHK1[i].TenMon && listDiemCN[i].TenMH == listDiemHK2[i].TenMon)
+                {
+                    listDiemCN[i].DiemTBCN =  Math.Round((listDiemHK1[i].DiemTong + listDiemHK2[i].DiemTong)/2, 1);
+                }
+                TBCN += listDiemCN[i].DiemTBCN;
+            }
+            ViewData["DiemHK1"] = listDiemHK1;
+            ViewData["DiemHK2"] = listDiemHK2;
+            ViewData["DiemCN"] = listDiemCN;
+            ViewBag.TBHK1 = Math.Round(TBHK1 / 13, 1);
+            ViewBag.TBHK2 = Math.Round(TBHK2 / 13, 1);
+            ViewBag.TBCN = Math.Round(TBCN / 13, 1);
+            return View();
         }
 
 
