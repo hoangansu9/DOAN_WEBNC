@@ -111,17 +111,13 @@ header .nav {
         header .nav .navbar-collapse li {
           padding-bottom: 5px; } }
 
-main {
-  height: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px !important; }
-
+/*main {
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px !important;
+}*/
 footer {
-  padding-top: 40px;
-  padding-bottom: 20px;
-  min-height: 520px;
-  display: block;
-  position: absolute;
+  padding-top: 30px;
   width: 100%;
   background-image: linear-gradient(88.7deg, #0f78a1 -17.1%, #2892c4 40.4%, #5023b1 115.3%);
   color: #fff; }
@@ -167,12 +163,12 @@ footer {
             text-decoration: none;
             font-size: 110%; }
   footer .feedback-form {
-    width: 80%;
+    width: 95%;
     margin: 0 auto; }
     footer .feedback-form input, footer .feedback-form textarea {
       background-color: transparent;
       color: #fff;
-      font-size: 16px;
+      font-size: 14px;
       font-family: sans-serif;
       letter-spacing: 1px;
       padding-left: 15px; }
@@ -181,6 +177,9 @@ footer {
       resize: none; }
     footer .feedback-form input:focus, footer .feedback-form textarea:focus {
       border-color: #82bee0; }
+    footer .feedback-form .form-control:focus {
+      background-color: rgba(0, 0, 0, 0.24) !important;
+      color: #fff; }
   footer .mapouter {
     position: relative;
     width: 100%; }

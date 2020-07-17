@@ -148,11 +148,11 @@ header {
     }
 }
 
-main {
+/*main {
     height: 100%;
     padding-top: 50px;
     padding-bottom: 50px !important;
-}
+}*/
 
 footer {
     input:-webkit-autofill,
@@ -177,16 +177,13 @@ footer {
         right: 10px;
         bottom: 10px;
         padding: 5px 0 !important;
-        i{
+
+        i {
             color: #fff;
         }
     }
 
-    padding-top: 40px;
-    padding-bottom: 20px;
-    min-height: 520px;
-    display: block;
-    position: absolute;
+    padding-top: 30px;
     width: 100%;
     background-image: linear-gradient( 88.7deg, rgb(15, 120, 161) -17.1%, rgb(40, 146, 196) 40.4%, rgb(80, 35, 177) 115.3% );
     color: #fff;
@@ -225,13 +222,13 @@ footer {
     }
 
     .feedback-form {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
 
         input, textarea {
             background-color: transparent;
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
             font-family: sans-serif;
             letter-spacing: 1px;
             padding-left: 15px;
@@ -246,7 +243,13 @@ footer {
             // border: 1px solid red;
             border-color: rgb(130, 190, 224);
         }
+
+        .form-control:focus {
+            background-color: rgba(0,0,0,0.24) !important;
+            color: #fff;
+        }
     }
+
 
     .mapouter {
         position: relative;
