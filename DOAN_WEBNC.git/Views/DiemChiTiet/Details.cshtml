@@ -10,8 +10,9 @@
 
     <div>
 
-        <h5>Ten Hoc Sinh: @ViewBag.TenHS , Mon Hoc: @ViewBag.TenMH</h5>
-        <table  class="table table-bordered"  >
+        <h5>Tên học sinh: @ViewBag.TenHS 
+        <br/> Môn học: @ViewBag.TenMH</h5>
+        <table  class="table table-bordered table-hover"  >
             <thead >
                 <tr>
                     <td></td>
@@ -71,8 +72,8 @@
     <p>
         @if (User.IsInRole("Admin"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = ViewBag.MaBangDiem })
+            @Html.ActionLink("Edit", "Edit", new { id = ViewBag.MaBangDiem, @class= "btn btn-success" })
         }
         &nbsp; | &nbsp;
-        @Html.ActionLink("Back to List", "Index")
+      <a class=" btn btn btn-dark" style="color:white;" href="/Lop/DetailStudent/@ViewBag.MaHocSinh">Quay lại</a>
     </p>

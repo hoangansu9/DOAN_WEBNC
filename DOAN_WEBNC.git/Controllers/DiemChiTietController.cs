@@ -46,7 +46,7 @@ namespace DOAN_WEBNC.Controllers
             var detail = db.DiemHocSinhs.FirstOrDefault(m => m.MaBangDiem == id);
             ViewBag.TenMH = db.MonHocs.Find(detail.MaMonHoc).TenMonHoc;
             ViewBag.TenHS = db.HocSinhs.Find(detail.MaHocSinh).HoTen;
-
+            ViewBag.MaHocSinh = db.HocSinhs.Find(detail.MaHocSinh).IDHocSinh;
             ViewBag.MaBangDiem = detail.MaBangDiem;
             if (chiTietDiem == null)
             {
