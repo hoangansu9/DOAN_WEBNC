@@ -73,21 +73,21 @@
                               color: #ffffff !important;
                             }
                        </style>
-                        <div class="row">
-                            @using(Html.BeginForm("SendMail", "Home"))
-                            {
-                                <div class="col-md-6">
-                                    <input class="form-control" type="email" name="email" id="emailAddress" placeholder="Địa chỉ email">
-                                    <span style="margin-bottom: 20px; display: block"></span>
-                                    <input class="form-control" type="text" name="fullname" id="fullname" placeholder="Họ và tên">
-                                    <button class="btn btn-primary" type="submit">Gửi</button>
-                                </div>
-                                <div class="col-md-6">
-                                    <textarea class="form-control" name="feedback-content" id="feedbackContent" cols="30"
-                                              rows="5" placeholder="Nội dung"></textarea>
-                                </div>
-                            }
-                        </div>
+                        @using(Html.BeginForm("SendMail", "Home"))
+                        {
+                            <div class="row">
+                            <div class="col-md-6">
+                                <input class="form-control" type="email" name="email" id="emailAddress" placeholder="Địa chỉ email">
+                                <span style="margin-bottom: 20px; display: block"></span>
+                                <input class="form-control" type="text" name="fullname" id="fullname" placeholder="Họ và tên">
+                                <button class="btn btn-primary" type="submit">Gửi</button>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="feedback-content" id="feedbackContent" cols="30"
+                                            rows="5" placeholder="Nội dung"></textarea>
+                            </div>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="col-lg-4 align-items-center">
