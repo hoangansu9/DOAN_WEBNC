@@ -421,6 +421,7 @@
     <Content Include="Views\DiemChiTiet\Details.cshtml" />
     <Content Include="Views\Lop\DetailStudent.cshtml" />
     <Content Include="Views\DiemChiTiet\Edit.cshtml" />
+    <Content Include="Views\StudentView\DetailStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

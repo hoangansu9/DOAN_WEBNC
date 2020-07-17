@@ -103,7 +103,7 @@ namespace DOAN_WEBNC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDHocSinh,HoTen,GioiTinh,NgaySinh,DiaChi,Email,IDLop,Image")] HocSinh hocSinh)
+        public async Task<ActionResult> Create([Bind(Include = "IDHocSinh,HoTen,GioiTinh,NgaySinh,DiaChi,Email,IDLop,Image,ImageUpload")] HocSinh hocSinh)
         {
             //
             string MSSV = "";
@@ -124,14 +124,7 @@ namespace DOAN_WEBNC.Controllers
 
             if (ModelState.IsValid)
             {
-                if (hocSinh.ImageUpload != null)
-                {
-                    string fileNameImg = Path.GetFileNameWithoutExtension(hocSinh.ImageUpload.FileName);
-                    string extension = Path.GetExtension(hocSinh.ImageUpload.FileName);
-                    fileNameImg = fileNameImg + extension;
-                    hocSinh.Image = "~/Content/Images/" + fileNameImg;
-                    hocSinh.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), fileNameImg));
-                }
+              
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 
@@ -148,8 +141,17 @@ namespace DOAN_WEBNC.Controllers
                 hs.NgaySinh = hocSinh.NgaySinh;
                 hs.DiaChi = hocSinh.DiaChi;
                 hs.MSSV = MSSV;
-                hs.IDLop = hocSinh.IDLop;             
-                hs.Image = hocSinh.Image;
+                hs.IDLop = hocSinh.IDLop;
+                if (hocSinh.ImageUpload != null)
+                {
+                    string fileNameImg = Path.GetFileNameWithoutExtension(hocSinh.ImageUpload.FileName);
+                    string extension = Path.GetExtension(hocSinh.ImageUpload.FileName);
+                    fileNameImg = fileNameImg + extension;
+                    hocSinh.Image = "~/Content/Images/" + fileNameImg;
+                    hocSinh.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), fileNameImg));
+                    hs.Image = hocSinh.Image;
+                }
+
 
                 ViewBag.IDLop = new SelectList(db.Lops, "IDLop", "TenLop", hocSinh.IDLop);
 

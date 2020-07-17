@@ -5,11 +5,15 @@
 }
 @using DOAN_WEBNC.Models
 @model HocSinh
-
+    <style>
+        .container-xl {
+            max-width: 1700px
+        }
+    </style>
 <div class="student-container container-fluid">
     <div class="row">
 
-        <div class="col-xl-4 col-md-4">
+        <div class="col-xl-3 col-md-3">
             <input type="checkbox" id="check">
             <label for="check" class="show-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -20,9 +24,9 @@
                     <i class="fas fa-times"></i>
                 </label>
                 <div class="student-img">
-                    <img src="../Content/images/student-img.png" alt="#">
+                    <img src="@Url.Content(Model.Image)" alt="#">
                 </div>
-                <h4>huỳnh anh kiệt</h4>
+                <h4>@Model.HoTen</h4>
                 <ul id=student-menu>
                     <li><button class="tablinks active" onclick="openStudentTab(event, 'XemThongTin')">Xem Thông Tin</button></li>
                     <li><button class="tablinks" onclick="openStudentTab(event, 'XemDiem')">Xem điểm</button></li>
@@ -31,45 +35,47 @@
             </div>
 
         </div>
-        <div class="col-lg-8 col-md-8">
+        <div class="col-lg-9 col-md-9">
             <div class="container-fluid">
                 <section id="XemDiem" style="display: none;" class="student-grade tabcontent">
-                    <table>
-                        <thead>
-                        <th>STT</th>
-                        <th>Tên Môn Học</th>
-                        <th>Điểm 15'</th>
-                        <th>Điểm 45'</th>
-                        <th>Điểm Thi</th>
-                        <th>Điểm Trung Bình</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="subject-name">Toán</td>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td class="subject-name">Lý</td>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td class="subject-name">Hóa</td>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>10</td>
-                            </tr>
-                        </tbody>
-                    </table>
+               
+                    @Html.Action("DetailStudent", "StudentView")
+                    @*<table>
+            <thead>
+            <th>STT</th>
+            <th>Tên Môn Học</th>
+            <th>Điểm 15'</th>
+            <th>Điểm 45'</th>
+            <th>Điểm Thi</th>
+            <th>Điểm Trung Bình</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="subject-name">Toán</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="subject-name">Lý</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="subject-name">Hóa</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                </tr>
+            </tbody>
+        </table>*@
                 </section>
                 <section id="XemThongTin" class="student-info tabcontent">
                     <div class="student-details row">
@@ -96,7 +102,7 @@
                             <span>Lớp</span>
                         </div>
                         <div class="col-sm-8">
-                            xxx
+                            @Model.Lop.TenLop
                         </div>
                     </div>
                     <div class="student-details row">
@@ -227,4 +233,4 @@
         </div>
     </div>
 </div>
-    </div>
+   

@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Student", FormMethod.Post, new { enctype = "multipart/form-data",role = "form" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -59,8 +59,8 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">          
-            <img src="~/Content/Images/thumbnail.png" style="height:40px ;width:40px;" id="prev" />
+        <div class="col-md-10">
+            <img src="~/Content/Images/thumbnail.png" style="height:50px ;width:50px;" id="prev" />
             <input type="file" name="ImageUpload" onchange="ShowImgPrev(this,document.getElementById('prev'))" />
         </div>
     </div>

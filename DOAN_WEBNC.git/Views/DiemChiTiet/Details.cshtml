@@ -72,8 +72,12 @@
     <p>
         @if (User.IsInRole("Admin"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = ViewBag.MaBangDiem, @class= "btn btn-success" })
+            @Html.ActionLink("Edit", "Edit", new { id = ViewBag.MaBangDiem, @class = "btn btn-success" })
+            <span> &nbsp; | &nbsp;</span>
+            <a class=" btn btn btn-dark" style="color:white;" href="/Lop/DetailStudent/@ViewBag.MaHocSinh">Quay lại</a>
         }
-        &nbsp; | &nbsp;
-      <a class=" btn btn btn-dark" style="color:white;" href="/Lop/DetailStudent/@ViewBag.MaHocSinh">Quay lại</a>
+        @if (User.IsInRole("Student"))
+        {        
+            <a class=" btn btn btn-dark" style="color:white;" href="/studentview/Index">Quay lại</a>
+        }
     </p>
