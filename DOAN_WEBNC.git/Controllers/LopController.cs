@@ -31,29 +31,7 @@ namespace DOAN_WEBNC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Lop lop = db.Lops.Find(id);
-            var listHocSinh = db.HocSinhs.Include(x => x.Lop).Where(x => x.Lop.IDLop == id).ToList();
-//            var chiTietList = db.DiemHocSinhs.Include(d => d.HocSinh).Include(d => d.MonHoc).Include(d => d.NamHoc).ToList();
-//            var list = (from r1 in listHocSinh
-//                        join
-//r2                      in db.DiemHocSinhs on r1.IDHocSinh equals r2.MaHocSinh
-//                        join r3 in db.ChiTietDiems on r2.MaBangDiem equals r3.MaBangDiem
-//                        join r4 in db.MonHocs on r2.MaMonHoc equals r4.IDMonHoc
-//                        join r5 in db.NamHocs on r2.IDNamHoc equals r5.IDNamHoc
-//                        select new LopViewModel
-//                        {
-//                            IDHocSinh = r1.IDHocSinh,
-//                            TenHocSinh = r1.HoTen,
-//                            IDLop = r1.Lop.IDLop,
-//                            TenLop = r1.Lop.TenLop,
-//                            MaBangDiem = r2.MaBangDiem,
-//                            TenMonHoc = r4.TenMonHoc,
-//                            IDnamHoc = r2.IDNamHoc,
-//                            LoaiDiem = r3.LoaiDiem,
-//                            LanThi = r3.LanThi,
-//                            Diem = r3.Diem,
-//                            TenNamHoc = r5.TenNamHoc
-//                        }).ToList();
-//            ViewBag.listDiem = list;
+            var listHocSinh = db.HocSinhs.Include(x => x.Lop).Where(x => x.Lop.IDLop == id).ToList();           
             if (lop == null)
             {
                 return HttpNotFound();
@@ -64,6 +42,7 @@ namespace DOAN_WEBNC.Controllers
         //detal hoc sinh
         public ActionResult DetailStudent(string id)
         {
+
             if (String.IsNullOrEmpty(id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -79,7 +58,48 @@ namespace DOAN_WEBNC.Controllers
                 MaBangDiem = m.MaBangDiem,
                 TenMon = m.MonHoc.TenMonHoc,
                 DiemTong = 0
-            });
+            }).ToList();
+            foreach (var item in listDiem)
+            {
+                var chiTietDiem = db.ChiTietDiems.Where(m => m.MaBangDiem == item.MaBangDiem).ToList();
+                foreach(var tmp in chiTietDiem)
+                {
+                    switch (tmp.LoaiDiem)
+                    {
+                        case TenLoaiDiem.Loai1:
+                            {
+                                item.DiemTong += tmp.Diem;
+
+                                break;
+                            }
+                        case TenLoaiDiem.Loai2:
+                            {
+                                double temp = 0;
+                                if (tmp.LanThi == 1) { temp += tmp.Diem; }
+                                if (tmp.LanThi == 2) { temp += tmp.Diem; }
+                                if (tmp.LanThi == 3) { temp += tmp.Diem; }
+                                item.DiemTong += temp;
+                                break;
+                            }
+                        case TenLoaiDiem.Loai3:
+                            {
+                                double temp = 0;
+                                if (tmp.LanThi == 1) { temp += tmp.Diem * 2; }
+                                if (tmp.LanThi == 2) { temp += tmp.Diem * 2; }
+                                item.DiemTong += temp;
+                                break;
+                            }
+                        case TenLoaiDiem.THI:
+                            {
+                                item.DiemTong += tmp.Diem * 3;
+                                item.DiemTong = Math.Round(item.DiemTong = item.DiemTong / 11, 2);
+                                break;
+                            }
+                           
+                    }
+                   
+                }    
+            }
             return View(listDiem);
         }
 

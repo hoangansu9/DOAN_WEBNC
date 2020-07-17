@@ -1,11 +1,9 @@
-﻿@*@model IEnumerable<DOAN_WEBNC.Models.Lop>
+﻿@model IEnumerable<DOAN_WEBNC.Models.Lop>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,9 +24,9 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDLop }) |
             @Html.ActionLink("Details", "Details", new { id=item.IDLop }) |
-            @Html.ActionLink("Dele  te", "Delete", new { id=item.IDLop })
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDLop })
         </td>
     </tr>
 }
 
-</table>*@
+</table>

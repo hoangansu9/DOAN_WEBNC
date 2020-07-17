@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<DOAN_WEBNC.Models.ChiTietDiem>
-
+@using DOAN_WEBNC.Models
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    double tbhk = 0;
+   
 }
 
 
@@ -24,8 +26,41 @@
                 <td>Điểm</td>
                 @foreach (var item in Model)
                 {
-                    <td>  @Html.DisplayFor(modelItem => item.Diem)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Diem)</td>
+                    switch (item.LoaiDiem)
+                    {
+                        case TenLoaiDiem.Loai1:
+                            {
+                                tbhk += item.Diem;
+
+                                break;
+                            }
+                        case TenLoaiDiem.Loai2:
+                            {
+                                double temp = 0;
+                                if (item.LanThi == 1) { temp += item.Diem; }
+                                if (item.LanThi == 2) { temp += item.Diem; }
+                                if (item.LanThi == 3) { temp += item.Diem; }
+                                tbhk += temp;
+                                break;
+                            }
+                        case TenLoaiDiem.Loai3:
+                            {
+                                double temp = 0;
+                                if (item.LanThi == 1) { temp += item.Diem*2; }
+                                if (item.LanThi == 2) { temp += item.Diem*2; }
+                                tbhk += temp;
+                                break;
+                            }
+                        case TenLoaiDiem.THI:
+                            {
+                                tbhk += item.Diem*3;
+                              
+                                break;
+                            }
+                    }
                 }
+                <td>@Math.Round(tbhk / 11, 2)</td>
             </tr>
 
 
@@ -33,7 +68,11 @@
 
         
     </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = ViewBag.MaBangDiem })
+        }
+        &nbsp; | &nbsp;
+        @Html.ActionLink("Back to List", "Index")
+    </p>

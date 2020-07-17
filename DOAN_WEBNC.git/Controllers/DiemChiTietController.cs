@@ -46,11 +46,77 @@ namespace DOAN_WEBNC.Controllers
             var detail = db.DiemHocSinhs.FirstOrDefault(m => m.MaBangDiem == id);
             ViewBag.TenMH = db.MonHocs.Find(detail.MaMonHoc).TenMonHoc;
             ViewBag.TenHS = db.HocSinhs.Find(detail.MaHocSinh).HoTen;
+
+            ViewBag.MaBangDiem = detail.MaBangDiem;
             if (chiTietDiem == null)
             {
                 return HttpNotFound();
             }
             return View(chiTietDiem);
         }
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var chiTietDiem = db.ChiTietDiems.Where(x => x.MaBangDiem == id).ToList();
+            var detail = db.DiemHocSinhs.FirstOrDefault(m => m.MaBangDiem == id);
+            ViewBag.TenMH = db.MonHocs.Find(detail.MaMonHoc).TenMonHoc;
+            ViewBag.TenHS = db.HocSinhs.Find(detail.MaHocSinh).HoTen;
+            if (chiTietDiem == null)
+            {
+                return HttpNotFound();
+            }
+            return View(chiTietDiem);
+        }
+        [HttpPost]
+        public ActionResult EditDiem(FormCollection form, int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var bangDiem = db.ChiTietDiems.Where(m => m.MaBangDiem == id).ToList();
+                foreach (var item in bangDiem)
+                {
+                    switch (item.LoaiDiem)
+                    {
+                        case TenLoaiDiem.Loai1:
+                            {
+                                item.Diem = Convert.ToDouble(form["Diem_Loai1_1"]);
+
+                                break;
+                            }
+                        case TenLoaiDiem.Loai2:
+                            {
+                                if (item.LanThi == 1) item.Diem = Convert.ToDouble(form["Diem_Loai2_1"]);
+                                if (item.LanThi == 2) item.Diem = Convert.ToDouble(form["Diem_Loai2_2"]);
+                                if (item.LanThi == 3) item.Diem = Convert.ToDouble(form["Diem_Loai2_3"]);
+                                break;
+                            }
+                        case TenLoaiDiem.Loai3:
+                            {
+                                if (item.LanThi == 1) item.Diem = Convert.ToDouble(form["Diem_Loai3_1"]);
+                                if (item.LanThi == 2) item.Diem = Convert.ToDouble(form["Diem_Loai3_2"]);
+                                break;
+                            }
+                        case TenLoaiDiem.THI:
+                            {
+                                item.Diem = Convert.ToDouble(form["Diem_THI_1"]);
+                                break;
+                            }
+                    }
+                    db.Entry(item).State = EntityState.Modified;
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Details", "DiemChiTiet", new { id = bangDiem.First().MaBangDiem });
+            }
+            return View();
+           
+        }
+       
     }
 }

@@ -9,6 +9,9 @@
   position: relative;
   scroll-behavior: smooth; }
 
+body {
+  margin-top: 150px; }
+
 /*a:hover{
     color: #fff;
 }*/
@@ -19,9 +22,7 @@ a:hover {
   text-decoration: none; }
 
 .my-container {
-  width: 100% !important;
-  padding-left: 100px;
-  padding-right: 100px; }
+  width: 100% !important; }
 
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
