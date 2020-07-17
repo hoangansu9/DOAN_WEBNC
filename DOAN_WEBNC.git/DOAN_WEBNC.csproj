@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiemChiTietController.cs" />
     <Compile Include="Controllers\DiemHSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopController.cs" />
@@ -189,11 +190,15 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChiTietDiem.cs" />
+    <Compile Include="Models\CTDiemTungHSVM.cs" />
+    <Compile Include="Models\DiemCaNamVM.cs" />
     <Compile Include="Models\DiemHS.cs" />
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\HocSinh.cs" />
+    <Compile Include="Models\HocSinhViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Lop.cs" />
+    <Compile Include="Models\LopViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\NamHoc.cs" />
@@ -402,16 +407,19 @@
     <Content Include="Views\MonHoc\Details.cshtml" />
     <Content Include="Views\MonHoc\Edit.cshtml" />
     <Content Include="Views\MonHoc\Index.cshtml" />
-    <Content Include="Views\NamHoc\Create.cshtml" />
-    <Content Include="Views\NamHoc\Delete.cshtml" />
-    <Content Include="Views\NamHoc\Details.cshtml" />
-    <Content Include="Views\NamHoc\Edit.cshtml" />
-    <Content Include="Views\NamHoc\Index.cshtml" />
     <Content Include="Views\DiemHS\Create.cshtml" />
     <Content Include="Views\DiemHS\Delete.cshtml" />
     <Content Include="Views\DiemHS\Details.cshtml" />
     <Content Include="Views\DiemHS\Edit.cshtml" />
     <Content Include="Views\DiemHS\Index.cshtml" />
+    <Content Include="Views\NamHoc\Create.cshtml" />
+    <Content Include="Views\NamHoc\Delete.cshtml" />
+    <Content Include="Views\NamHoc\Details.cshtml" />
+    <Content Include="Views\NamHoc\Edit.cshtml" />
+    <Content Include="Views\NamHoc\Index.cshtml" />
+    <Content Include="Views\DiemChiTiet\Index.cshtml" />
+    <Content Include="Views\DiemChiTiet\Details.cshtml" />
+    <Content Include="Views\Lop\DetailStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

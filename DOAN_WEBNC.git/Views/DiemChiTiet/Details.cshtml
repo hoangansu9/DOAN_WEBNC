@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DOAN_WEBNC.Models.ChiTietDiem>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div>
+
+        <h5>Ten Hoc Sinh: @ViewBag.TenHS , Mon Hoc: @ViewBag.TenMH</h5>
+        <table  class="table table-bordered"  >
+            <thead >
+                <tr>
+                    <td></td>
+                    <td>Miệng</td>
+                    <td colspan="3">15 phút</td>
+                    <td colspan="2">1 tiết</td>
+                    <td>Thi</td>
+                    <td>TBHK</td>
+                </tr>
+            </thead>          
+            <tr>
+                <td>Điểm</td>
+                @foreach (var item in Model)
+                {
+                    <td>  @Html.DisplayFor(modelItem => item.Diem)</td>
+                }
+            </tr>
+
+
+        </table>
+
+        
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

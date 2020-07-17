@@ -42,7 +42,6 @@ namespace DOAN_WEBNC.Controllers
         public ActionResult Create()
         {
             ViewBag.MaHocSinh = new SelectList(db.HocSinhs, "IDHocSinh", "HoTen");
-            ViewBag.MaMonHoc = new SelectList(db.MonHocs, "IDMonHoc", "TenMonHoc");
             ViewBag.IDNamHoc = new SelectList(db.NamHocs, "IDNamHoc", "TenNamHoc");
             return View();
         }
@@ -52,30 +51,84 @@ namespace DOAN_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,MaMonHoc,IDNamHoc")] DiemHS diemHS)
+        public ActionResult Create([Bind(Include = "MaBangDiem,MaHocSinh,IDNamHoc")] DiemHS diemHS)
         {
             if (ModelState.IsValid)
             {
-                try
+                //try
+                //{
+                
+                var mh = db.MonHocs.ToList();
+                foreach(var i in mh)
                 {
-                 db.DiemHocSinhs.Add(diemHS);
-                                db.SaveChanges();
-                                return RedirectToAction("Index");
+                    DiemHS diem = new DiemHS();
+                    diem.MaMonHoc = i.IDMonHoc;
+                    diem.IDNamHoc = diemHS.IDNamHoc;
+                    diem.MaHocSinh = diemHS.MaHocSinh;
+
+                    db.DiemHocSinhs.Add(diem);
+                    
                 }
-                catch (DbUpdateException ex)
+                db.SaveChanges();
+                //tao bang diem chi tiet cho tung mon
+                var bangDiem = db.DiemHocSinhs.Where(m => m.MaHocSinh == diemHS.MaHocSinh && m.IDNamHoc == diemHS.IDNamHoc).ToList();
+                foreach (var item in bangDiem)
                 {
-                    SqlException innerException = ex.InnerException.InnerException as SqlException;
-                    if (innerException != null && innerException.Number == 2601)
+                    ChiTietDiem ctDIem = new ChiTietDiem();
+                    ctDIem.LoaiDiem = TenLoaiDiem.Loai1;
+                    ctDIem.LanThi = 1;
+                    ctDIem.Diem = 0;
+                    ctDIem.MaBangDiem = item.MaBangDiem;
+                    db.ChiTietDiems.Add(ctDIem);
+
+                    for (int i = 0; i < 3; i++)
                     {
-                        ModelState.AddModelError("UniqueHocKy", "Học kỳ {0} này đã tồn tại trong hệ thống. Vui lòng nhập lại Email khác");
-                        return View("Create", diemHS);
+                        ChiTietDiem ctDIem2 = new ChiTietDiem();
+                        ctDIem2.LoaiDiem = TenLoaiDiem.Loai2;
+                        ctDIem2.LanThi = i + 1;
+                        ctDIem2.Diem = 0;
+                        ctDIem2.MaBangDiem = item.MaBangDiem;
+                        db.ChiTietDiems.Add(ctDIem2);
                     }
-                    else
+
+                    for (int i = 0; i < 2; i++) 
                     {
-                        ModelState.AddModelError("UniqueHocKy", "Có vẫn đề đã xảy ra khi lưu dữ liệu, try again!");
-                        return View("Create", diemHS);
+                        ChiTietDiem ctDIem3 = new ChiTietDiem();
+                        ctDIem3.LoaiDiem = TenLoaiDiem.Loai3;
+                        ctDIem3.LanThi = i + 1;
+                        ctDIem3.Diem = 0;
+                        ctDIem3.MaBangDiem = item.MaBangDiem;
+                        db.ChiTietDiems.Add(ctDIem3);
                     }
+                    ChiTietDiem ctDIem4 = new ChiTietDiem();
+                    ctDIem4.LoaiDiem = TenLoaiDiem.THI;
+                    ctDIem4.LanThi = 1;
+                    ctDIem4.Diem = 0;
+                    ctDIem4.MaBangDiem = item.MaBangDiem;
+                    db.ChiTietDiems.Add(ctDIem4);
+
                 }
+               
+                    db.SaveChanges();
+                return RedirectToAction("Index");
+                //var diemMieng = new ChiTietDiem(
+                    
+                //    );
+                //}
+                //catch (DbUpdateException ex)
+                //{
+                //    SqlException innerException = ex.InnerException.InnerException as SqlException;
+                //    if (innerException != null && innerException.Number == 2601)
+                //    {
+                //        ModelState.AddModelError("UniqueHocKy", "Học kỳ {0} này đã tồn tại trong hệ thống. Vui lòng nhập lại Email khác");
+                //        return View("Create", diemHS);
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("UniqueHocKy", "Có vẫn đề đã xảy ra khi lưu dữ liệu, try again!");
+                //        return View("Create", diemHS);
+                //    }
+                //}
 
 
             }

@@ -153,10 +153,12 @@ namespace DOAN_WEBNC.Controllers
 
                 ViewBag.IDLop = new SelectList(db.Lops, "IDLop", "TenLop", hocSinh.IDLop);
 
-                db. HocSinhs.Add(hs);
+                db.HocSinhs.Add(hs);
                 //try
                 //{
                     db.SaveChanges();
+                //taoMonHoc cho hs
+               
                     var result = await UserManager.CreateAsync(user, "123456@aA");
 
                     if (result.Succeeded)

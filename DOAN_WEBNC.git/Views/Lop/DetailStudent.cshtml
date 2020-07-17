@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DOAN_WEBNC.Models.CTDiemTungHSVM>
+
+@{
+    ViewBag.Title = "DetailStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailStudent</h2>
+
+<h3>Nam hoc: @ViewBag.NamHoc</h3>
+<h4>Ten HS: @ViewBag.TenHS</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.TenMon)
+            </td>
+            @foreach (var item in Model)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenMon)
+                </td>           
+            }
+        </tr>
+    </thead>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.DiemTong)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemTong)
+            </td>
+        }
+    </tr>
+    <tr>
+        <td></td>
+        @foreach (var item in Model)
+        {
+    <td>
+        <a href="~/DiemChiTiet/Details/@item.MaBangDiem" >Details</a>
+      
+    </td>
+        }
+    </tr>
+
+   
+    </table>
