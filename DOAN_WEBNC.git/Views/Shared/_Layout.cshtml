@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,16 +10,17 @@
 </head>
 <body class="student-layout">
     <header id="top">
-        <nav class="nav sticky-top navbar-expand-md">
-            <div class="navbar-brand">
-                <img src="~/Content/Images/lg.png" alt="logo" />
-                <span class="school-name">PAPATPOETOE HIGH SHOOL</span>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colapsibleNavbar">
+        <nav class="nav navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                <img src="~/Content/Images/lg.png" alt="logo" height="70px"/>
+                <div class="school-name">PAPATOETOE HIGH SCHOOL</div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="colapsibleNavbar">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
                     @{
                         if (User.IsInRole("Admin"))
                         {
@@ -35,9 +35,8 @@
                 </ul>
             </div>
         </nav>
-
     </header>
-    <main>
+    <main class="flex-shrink-0">
         <div class="container-lg">
             @RenderBody()
         </div>
@@ -57,7 +56,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 align-items-center">
+                    <div class="col-lg-5 align-items-center">
                         <h3>
                             Gửi ý kiến của bạn cho chúng tôi
                         </h3>
@@ -73,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-5 align-items-center">
+                    <div class="col-lg-4 align-items-center">
                         <h3>Trường trung học Papatoetoe</h3>
                         <div class="contact-info">
                             <p>155 Sư Vạn Hạnh (nối dài) P13 Q10 TPHCM</p>

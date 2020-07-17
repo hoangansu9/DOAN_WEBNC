@@ -59,29 +59,24 @@ header .nav {
   border-color: transparent !important; }
   @media screen and (max-width: 425px) {
     header .nav .school-name {
-      display: none; }
-      header .nav .school-name .navbar-collapse .navbar-nav li a {
-        display: inline-block; } }
+      display: none !important; } }
   header .nav .navbar-brand {
     width: auto;
     margin-left: 30px;
-    margin-top: 20px;
     vertical-align: middle; }
-    header .nav .navbar-brand img {
-      height: 100px; }
   header .nav .school-name {
     height: 50px;
     padding: 0;
     font-size: 25px;
-    margin-top: 65px;
+    display: inline;
     color: #fff;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 300;
     font-family: 'Quicksand' !important; }
   header .nav .navbar-toggler {
     position: fixed;
-    right: 10px;
-    top: 45px; }
+    top: 29px;
+    right: 10px; }
   header .nav .navbar-collapse {
     float: right; }
     header .nav .navbar-collapse .navbar-nav {
@@ -90,7 +85,9 @@ header .nav {
         header .nav .navbar-collapse .navbar-nav {
           margin-right: 0px; } }
       header .nav .navbar-collapse .navbar-nav li {
-        margin-left: 10px; }
+        margin-left: 10px;
+        width: fit-content;
+        align-self: center; }
         header .nav .navbar-collapse .navbar-nav li a {
           color: #fff;
           transition: all .3s;
@@ -117,7 +114,7 @@ header .nav {
 main {
   height: 100%;
   padding-top: 50px;
-  padding-bottom: 50px; }
+  padding-bottom: 50px !important; }
 
 footer {
   padding-top: 40px;
